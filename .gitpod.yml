@@ -4,6 +4,7 @@ image:
 tasks:
   - init: |
       pip3 install -r requirements.txt
+      Rscript requirements.r
       make
     command: |
       echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
@@ -12,10 +13,6 @@ tasks:
       sudo usermod -a -G rstudio-users gitpod
       sudo usermod --password $(openssl passwd -1 $RSTUDIO_PASSWORD) gitpod
       sudo rstudio-server restart
-
-  # Start up the rstudio-server with permissions for the `gitpod` user. 
-  #    Rscript requirements.r
- #     sudo bash -c "echo R_LIBS_USER=$GITPOD_REPO_ROOT/.R/library > /home/gitpod/.Renviron"
 
 ports:
   - port: 8787
