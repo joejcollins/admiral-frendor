@@ -1,0 +1,9 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: make
+
+vscode:
+  extensions:
+    - efoerster.texlab@2.2.1:WBY/4qNg/sLl9rJMbjSlrw==
