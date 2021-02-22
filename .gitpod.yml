@@ -14,7 +14,6 @@ tasks:
       sudo usermod --password $(openssl passwd -1 $RSTUDIO_PASSWORD) gitpod
       sudo rstudio-server restart
 
-
 ports:
   - port: 8787
     onOpen: open-browser
