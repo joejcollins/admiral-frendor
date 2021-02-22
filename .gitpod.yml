@@ -2,7 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: make
+  - init: |
+      pip install -r requirements.txt
+      make
+      Rscript requirements.r
   # Start up the rstudio-server with permissions for the `gitpod` user. 
     command: |
       echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
