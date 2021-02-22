@@ -3,15 +3,14 @@ image:
 
 tasks:
   - init: |
-      pip install -r requirements.txt
+      pip3 install -r requirements.txt
       make
-      Rscript requirements.r
+  #    Rscript requirements.r
   # Start up the rstudio-server with permissions for the `gitpod` user. 
     command: |
       echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
       source $HOME/.bashrc
-      source .venv/bin/activate
-      sudo bash -c "echo R_LIBS_USER=$GITPOD_REPO_ROOT/.R/library > /home/gitpod/.Renviron"
+ #     sudo bash -c "echo R_LIBS_USER=$GITPOD_REPO_ROOT/.R/library > /home/gitpod/.Renviron"
       sudo bash -c "echo 'setwd(\"$GITPOD_REPO_ROOT\")' > /home/gitpod/.Rprofile"
       sudo usermod -a -G rstudio-users gitpod
       sudo usermod --password $(openssl passwd -1 $RSTUDIO_PASSWORD) gitpod
