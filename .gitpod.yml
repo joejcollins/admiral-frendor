@@ -3,13 +3,13 @@ image:
 
 tasks:
   - init: |
+      sudo chmod 777 /usr/lib/R/library
       sudo Rscript requirements.r
       pip3 install -r requirements.txt
       make
     command: |
       echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
       source $HOME/.bashrc
-      sudo chmod 777 /usr/lib/R/library
       sudo bash -c "echo 'setwd(\"$GITPOD_REPO_ROOT\")' > /home/gitpod/.Rprofile"
       sudo usermod -a -G rstudio-users gitpod
       sudo usermod --password $(openssl passwd -1 $RSTUDIO_PASSWORD) gitpod

@@ -16,4 +16,4 @@ install.packages(c(
     "stringi", 
     "stringr", 
     "tinytex", 
-    "xfun"), lib="/usr/lib/R/library")
+    "xfun"), lib="/usr/lib/R/site-library")
