@@ -1,4 +1,7 @@
 # R package list
+dir.create(".R")
+dir.create(".R/library")
+.libPaths(".R/library")
 install.packages(c(
     "base64enc", 
     "digest", 
@@ -16,4 +19,4 @@ install.packages(c(
     "stringi", 
     "stringr", 
     "tinytex", 
-    "xfun"), lib="/usr/lib/R/site-library")
+    "xfun"), lib=file.path(Sys.getenv("GITPOD_REPO_ROOT"), "/.R/library"))
