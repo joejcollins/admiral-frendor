@@ -3,8 +3,9 @@ image:
 
 tasks:
   - init: |
+      sudo Rscript requirements.r
+      chown gitpod /usr/lib/R/library
       pip3 install -r requirements.txt
-      Rscript requirements.r
       make
     command: |
       echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
