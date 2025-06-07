@@ -18,7 +18,7 @@ lint:  # Lint the code with ruff.
 
 lock:  # Create the lock file and requirements file.
 	rm -f requirements.*
-	uv pip compile pyproject.toml --python .venv/bin/python --output-file=requirements.txt
+	.venv/bin/uv pip compile pyproject.toml --python .venv/bin/python --output-file=requirements.txt
 
 .PHONY: help
 help: # Show help for each of the makefile recipes.
@@ -26,12 +26,15 @@ help: # Show help for each of the makefile recipes.
 
 report:  # Report the python version and pip list.
 	.venv/bin/python --version
-	uv pip list -v
+	.venv/bin/uv pip list -v
 
 test:  # Run tests.
 	.venv/bin/pytest ./tests --verbose --color=yes
 	.venv/bin/pytest --cov=src
 
 venv:  # Create the virtual environment.
-	uv venv .venv
-	uv pip install --python .venv/bin/python --requirements requirements.txt
+	python -m venv .venv
+	.venv/bin/pip install --upgrade pip
+	.venv/bin/pip install uv
+	.venv/bin/uv pip install -e .
+	.venv/bin/uv pip install --requirements requirements.txt
