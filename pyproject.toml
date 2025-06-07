@@ -1,7 +1,7 @@
 [project]
-name = "scott_tracy"
+name = "admiral_frendor"
 version = "0.0.1"
-description = "Pilot of the swing-wing rocket-plane Thunderbird 1."
+description = "Dedicated the Arago Rock Lighthouse in episode 16 (The Lighthouse Dwellers)."
 authors = [ { name = "Joe J Collins", email = "joejcollins@gmail.com" },]
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -12,7 +12,6 @@ classifiers = [
 requires-python = ">=3.12"
 dependencies = [
     "debugpy",
-    "ipykernel",
     "ipympl",
     "loguru",
     "mkdocs",
@@ -21,13 +20,12 @@ dependencies = [
     "pytest",
     "pytest-cov",
     "ruff",
-    "sourcery",
     "tqdm",
     "types-tqdm",
 ]
 
 [project.urls]
-repository = "https://github.com/earthroverprogram/scott-tracy"
+repository = "https://github.com/joejcollins/admiral-frendor"
 
 [tool.pytest.ini_options]
 log_cli = false
@@ -44,12 +42,12 @@ line-length = 88
 package = true
 
 [[tool.mypy.overrides]]
-module = ["scott_tracy.*"]
+module = ["admiral_frendor.*"]
 follow_untyped_imports = true
 
 [tool.pyright]
 exclude = ["**/__pycache__"]
 reportMissingImports = true
 reportMissingTypeStubs = false
-pythonVersion = "3.13"
+pythonVersion = "3.12"
 pythonPlatform = "Linux"

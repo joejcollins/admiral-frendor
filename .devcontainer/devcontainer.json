@@ -1,6 +1,6 @@
 {
-	"name": "scott-tracy: Python Template",
-	"image": "ghcr.io/joejcollins/scott-tracy:latest",
+	"name": "admiral-frendor: Ansible Project",
+	"image": "ghcr.io/joejcollins/admiral-frendor:latest",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/starship:1": {}
 	},
