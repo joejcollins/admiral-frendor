@@ -137,6 +137,8 @@ ruff==0.11.13
     # via admiral-frendor (pyproject.toml)
 six==1.17.0
     # via python-dateutil
+sourcery==1.37.0
+    # via admiral-frendor (pyproject.toml)
 stack-data==0.6.3
     # via ipython
 tqdm==4.67.1

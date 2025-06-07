@@ -20,6 +20,7 @@ dependencies = [
     "pytest",
     "pytest-cov",
     "ruff",
+    "sourcery",
     "tqdm",
     "types-tqdm",
 ]
