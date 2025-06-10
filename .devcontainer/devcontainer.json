@@ -24,6 +24,7 @@
 			},
 			"extensions": [
 				"charliermarsh.ruff",
+				"james-yu.latex-workshop",
 				"ms-toolsai.jupyter",
 				"ms-python.python",
 				"redhat.ansible",
