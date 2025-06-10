@@ -3,6 +3,8 @@
         "charliermarsh.ruff",
         "ms-toolsai.jupyter",
         "ms-python.python",
+        "redhat.ansible",
+        "redhat.vscode-yaml",
         "sourcery.sourcery",
         "tamasfe.even-better-toml"
     ]

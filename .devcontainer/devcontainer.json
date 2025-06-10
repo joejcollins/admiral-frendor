@@ -4,6 +4,13 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"files.exclude": {
+					"**/__pycache__": true,
+					"**/.pytest_cache": true,
+					"**/.ruff_cache": true,
+					"**/*.egg-info": true,
+					"**/*.pyc": true
+				},
 				"python.languageServer": "Pylance",
 				"python.defaultInterpreterPath": ".venv/bin/python",
 				"python.testing.autoTestDiscoverOnSaveEnabled": true,
@@ -19,6 +26,8 @@
 				"charliermarsh.ruff",
 				"ms-toolsai.jupyter",
 				"ms-python.python",
+				"redhat.ansible",
+				"redhat.vscode-yaml",
 				"sourcery.sourcery",
 				"tamasfe.even-better-toml"
 			]

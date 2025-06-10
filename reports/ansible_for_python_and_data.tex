@@ -1,0 +1,395 @@
+\documentclass[bigger]{beamer}
+% \setbeameroption{show only notes}
+\setbeamercolor{note page}{bg=white}
+\setbeamercolor{note title}{bg=white}
+
+\setbeamersize{text margin left=1cm, text margin right=1cm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}{\textbullet}
+
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\setbeamerfont{frametitle}{size=\LARGE}
+\setbeamerfont{framesubtitle}{size=\Large}
+\setbeamerfont{note page}{size=\footnotesize}
+
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hfill
+  \includegraphics[height=0.5cm]{images/zengenti.png}
+  \hspace{1em}
+  \vspace{1em}
+}
+
+% \usebackgroundtemplate%
+% {%
+%   \includegraphics[width=\paperwidth,height=\paperheight]{images/test_card.jpg}%
+% }
+
+\begin{document}
+\title{Ansible}
+\subtitle{Ansible for Python and Data Science}
+\author{Joe J Collins \\
+  \href{mailto:j.collins@zengenti.com}{j.collins@zengenti.com} \\
+  \href{https://linkedin.com/in/joejcollins}{linkedin.com/in/joejcollins}
+}
+\institute{\includegraphics[height=1.5cm]{images/zengenti.png}}
+\date{18 June 2025}
+
+\begin{frame}[plain]
+  \titlepage
+  \note{Thanks for taking the time to come out tonight.\\
+    I'm Big Joe from Zengenti.\\
+    We are a small company in Shropshire. About 70 nerds.\\
+    We do websites for universities and local authorities.\\
+    I actually don't do any websites, I work in the hosting team.\\
+    We maintain a private cloud to run the websites.\\
+    We use a combination of Ansible and Python\\
+    maintaining about 3000 servers.\\
+    But, tonight Matthew,\\
+    I am going to talk about, \textbf{using Ansible to manage}.\\
+  }
+\end{frame}
+
+\begin{frame}{What is sucky code?}
+  \framesubtitle{}
+  \begin{quote}
+    ``Programs are meant to be read by humans and
+    only incidentally for computers to execute.''\\
+    \hfill --- Donald Knuth
+  \end{quote}
+  % \bigskip
+  % \begin{quote}
+  %   ``It is better to have clean code that doesn't work
+  %   than crap code that does.''\\
+  %   \hfill --- Robert C. Martin
+  % \end{quote}
+  \note{My short answer is \dots \textbf{sucky code is hard to read}.\\
+    No need take my word for it.\\
+    Donald Knuth, the Yoda of Computer Science,\\
+    says that code is for humans to read\\
+    and sometimes for computers to run.\\
+    He is all about the readability.\\
+    % \vfil
+    % Uncle Bob Martin is more emphatic.\\
+    % He uses the term clean code.\\
+    % as a proxy for readability.\\
+    % He's says that readability is more important than working code.\\
+    % If you can understand it, then you can fix it,\\
+    % but if you can't understand it and it breaks, you can't fix it.
+  }
+\end{frame}
+
+\begin{frame}{The Great Hunt for Non Sucky Code}
+  \includegraphics[width=\textwidth]{images/companies.png}
+  \note{For about about 25 years now,\\
+    I have been looking for code that doesn't suck.\\
+    And trying to produce code that doesn't suck.\\
+    I've worked in companies large and small.\\
+    But pretty much, all the code sucked.\\
+    \vfil
+    This does beg the question, why does all code suck?\\
+  }
+\end{frame}
+
+\begin{frame}{Why Code Sucks}
+  \framesubtitle{The Statistics Favour Suck}
+  \begin{itemize}
+    \item Half of everything is below average
+      \pause
+    \item Sturgeon's Law
+      \pause
+    \item The 3 Year Old Programmer
+  \end{itemize}
+  \note<1>{
+    On the whole I think the odds are against us.\\
+    Straight out of the gate,\\
+    half of everything is going to be below average.\\
+    Well, below the median.\\
+    That's just the way averages work.\\
+  }
+  \note<2>{Then there is Sturgeon's Law.\\
+    Sturgeon was explaining why most science fiction is low quality.\\
+    And came up with the pithy answer,\\
+    ``90\% of everything is shit''.\\
+    The observation works here too.\\
+  }
+  \note<3>{
+    Then there is our experience.\\
+    When I started out\\
+    the average programmers experience was 3 years.\\
+    Now 25 years later that hasn't changed.\\
+    Probably because demand outstrips supply.\\
+    Which has been nice.\\
+    \vfil
+    So if the odds are against us\\
+    maybe the organizations we work for, will help.\\
+    Or perhaps not.\\
+  }
+\end{frame}
+
+\begin{frame}{Why Code Sucks}
+  \framesubtitle{Organisations Tend To Suck}
+  \begin{itemize}
+    \item Software Startups
+      \pause
+    \item Summer Student Projects
+      \pause
+    \item Prototypes in Production
+      %   \pause
+      % \item The New Project Effect
+      %   \pause
+      % \item The Agile Manifesto
+  \end{itemize}
+  \note<1>{
+    The romantic image of a software startup is\\
+    a couple of guys in a garage.\\
+    I have actually see this quite a bit.\\
+    For most start ups the two guys are the dad and the son.\\
+    The dad is the salesman.\\
+    And the son is the programmer.\\
+    They are inherently under resourced.\\
+    Writing readable code is a luxury they can't afford.\\
+  }
+  \note<2>{
+    The other kind of startup I have seen\\
+    occurs in big companies.\\
+    The summer student project.\\
+    Alternatively called the \textbf{unsupervised use of new technology}.\\
+    All the experienced programmers are on holiday or busy.\\
+    So they give the new technology to the summer students,\\
+    who give it a go.\\
+    And if it runs they put it into production.\\
+  }
+  \note<3>{
+    This last point is also a general point.\\
+    Any software that appears to work goes into production.\\
+    Not because anyone thinks it's a good idea\\
+    but because there is a commercial imperative.\\
+    Having learnt from the prototype,\\
+    the plan was to throw it away and build it properly.\\
+    But that never happens.\\
+    It is always put into production.\\
+    \vfil
+    Just in case you haven't lost all hope\\
+    I would say that suck\\
+    is actually built into human psychology.\\
+  }
+  % \note<4>{
+  %   So,\\
+  %   say you start a new project,\\
+  %   well resourced with all the best intentions.\\
+  %   The organization is still against you.\\
+  %   Who is available to work on the project?\\
+  %   Anyone who is new or is anyone whose on the bench.\\
+  %   This isn't necessarily a bad thing.\\
+  %   The average age of the team that\\
+  %   helped put Neil Armstrong to the moon was 28.\\
+  %   But they were all new graduate engineers.\\
+  %   The experienced engineers all had jobs\\
+  %   and why take a risk on a new project?
+  % }
+  % \note<5>{
+  %   Then there is \textbf{Agile Management Practice} \ldots\\
+  %   it was such a great idea.\\
+  %   That we should respond to change over following the plan.\\
+  %   It didn't say we shouldn't plan.\\
+  %   But I was there 25 years ago,\\
+  %   I was there the day the strength of Men failed\\
+  %   and we deliberately misread the Agile Manifesto\\
+  %   as `no need plan'.\\
+  %   Just start programming!
+  %   \vfil
+  %   And as if this wasn't bad enough,\\
+  %   just to make you feel completely hopeless,\\
+  %   I would say that suck\\
+  %   is actually built into human psychology.
+  % }
+\end{frame}
+
+\begin{frame}{Why Code Sucks}
+  \framesubtitle{The Psychology of Suck}
+  \begin{itemize}
+    \item The Illusion of Explanatory Depth
+      \pause
+      % \item The Lake Wobegon Effect
+      %   \pause
+    \item Availability Bias
+  \end{itemize}
+  \note<1>{
+    We are unaware of our ignorance.\\
+    Because we are ignorant of it.\\
+    We don't know what we don't know.\\
+    But writing code is about explaining things in detail.\\
+    So it is no surprise that we struggle.\\
+  }
+  \note<2>{
+    A couple of years ago we used a static analysis tool on our code.\\
+    A gadget called `CodeScene' for anyone that is interested.\\
+    To my surprise it said most of our code was good.\\
+    But it did point to the five worst files.\\
+    Those are the files I spend most of my time working on.\\
+    So those are the bits I remember.\\
+    It turns out all code doesn't actually suck,\\
+    I just feels like it.
+    \vfil
+    Nevertheless, if that is what you are working on,\\
+    makes sense to tool up for sucky code.\\
+  }
+\end{frame}
+
+\begin{frame}{What To Do}
+  \framesubtitle{Adapted from Michael Feathers}
+    \begin{itemize}
+      \item \alert<1>{\textbf{Discovery} Log behavior}
+      \item \alert<2>{\textbf{Exploration} Scripted investigation}
+      \item \alert<3>{\textbf{Automating} Test harnesses (or clamps)}
+      \item \alert<4>{\textbf{Deconstruction} Separate the target code}
+      \item \alert<5>{\textbf{Enable} Switching with a feature flag}
+      \item \alert<6>{\textbf{New Code} Side by side rewrite}
+    \end{itemize}
+  \note<1>{
+    This is my adapted 6 step plan to work on sucky code.\\
+    An initial discovery phase is to find out how the code is actually used.\\
+    Then we can explore the code and find it's quirks.\\
+    Our intermediate goal is to write some automated tests.\\
+    To protect us from making changes that might break things.\\
+    With the tests in place we can start to deconstruct the code.\\
+    And target the bits that need attention.\\
+    Using a feature flag will enable us to switch between\\
+    old and new code.\\
+    Finally we can get on with the job of writing new code.\\
+    \vfil
+    I have skipped the step about\\
+    getting control of the development environment.\\
+    We use ephemeral environments at Zengenti to keep things clean.\\
+    But that is a whole other talk, for another day.\\
+  }
+  \note<2>{
+    As a demo I have an API with one end point.\\
+    You can enjoy the squiggles, however, it does run.\\
+    \textbf{make app}\\
+    Let's take a look and see what it does.\\
+    \textbf{Open http://127.0.0.1:8000/docs}\\
+    \textbf{Try 2 and 42}\\
+    I can't really tell what is going on.\\
+    We really need to discover how the end point is being used.\\
+    So adding some logging is a good idea.\\
+    \textbf{demo01log}\\
+    Michael Feathers says don't change any thing until you have tests,\\
+    but he admits that sometimes you have to add stuff like logging.\\
+    \textbf{Try 2, 4 and 42}\\
+    We have a log of actual user behavior.\\
+  }
+  \note<3>{
+    Now we know how the end point is used.\\
+    We can start to explore the code a bit more.\\
+    \textbf{Open tests/app.http}\\
+    We can use http scripts to mimic the UI behavior.\\
+    \textbf{demo2http01}\\
+    There's a Jetbrains client for this or in this case a VSCode extension.\\
+    But you could equally well use a Jupyter notebook.\\
+    \textbf{demo2http02}\\
+    This allows us to do a more systematic investigation.\\
+    Looks like a string is coming back.\\
+    Not a number.\\
+    \textbf{Fix inverted commas}\\
+    We can get a feel for the behavior and quirks.\\
+    We might even start to get an insight into the author's intent.\\
+  }
+  \note<4>{
+    With this knowledge we can write some proper automated tests.\\
+    The kind of tests we could use in a CI/CD pipeline.\\
+    \textbf{Open tests/app\_test.py}\\
+    These are the clamps that will hold the code in place.\\
+    As Michael Feathers calls them.\\
+    We run these tests every time we make a change.\\
+    To make sure we haven't broken anything.\\
+    \textbf{demo3test01}\\
+    \textbf{demo3test02}\\
+    This will give us the confidence to make changes.\\
+    Every time we make a change we run the tests.\\
+    \textbf{make test}\\
+    We get a little report each time.\\
+    To let is know it is alright to continue.\\
+  }
+  \note<5>{
+    With the automated tests in place.\\
+    We are ready to start deconstructing the code.\\
+    \textbf{Open app.py}\\
+    We can start to separate the target code.\\
+    \textbf{demo4function01}\\
+    Since we don't really know what the code does.\\
+    We can't give it a meaningful name.\\
+    Michael Feathers suggests just mashing the keyboard.\\
+    We can check that it works in all it's ugliness.\\
+    By rerunning the tests.\\
+    \textbf{make test}\\
+  }
+  \note<6>{
+    Stay with me we are getting close.\\
+    Now we can enable a switch to control any new code.\\
+    There are lots of tools to do this.\\
+    We favour Unleash because it comes for free with Gitlab.\\
+    \textbf{Open /joejcollins/alan-tracy/-/feature\_flags}\\
+    Here I have a feature flag to turn a function on and off.\\
+    I can use this to switch between the old and the new code.\\
+    \textbf{demo5flag01}\\
+    \textbf{make test}\\
+    So lets rewrite the code.\\
+    \textbf{demo6new01}\\
+    This is actually a cut and paste from ChatGPT.\\
+    It is still a bit of a mess, but I am running out of time.\\
+    Things still work.\\
+    The code still sucks, but it sucks less.\\
+  }
+\end{frame}
+
+\begin{frame}{The Challenge}
+  \framesubtitle{Where I need your help}
+  \begin{quote}
+    ``It's not that hard...''\\
+    \hfill --- Billy Beane
+  \end{quote}
+  \bigskip
+  \begin{quote}
+    ``It's incredibly hard''\\
+    \hfill --- Ron Washington
+  \end{quote}
+  \bigskip
+  \note{To quote Moneyball,\\
+    this challenge is both easy and difficult.\\
+    The example was one function and one file.\\
+    But the code we are working with has 3500 files.\\
+    Some is hard to read,\\
+    some has been improved and some it half way between.\\
+    But it often feels like we have three different code bases.\\
+    All jumbled up.\\
+    \vfil
+    It turns out the improving code is easy\\
+    but managing the process is hard.\\
+    Knowing which bits to improve really hard.\\
+    I have no answer to that, I am kind of hoping you do.\\
+  }
+\end{frame}
+
+\begin{frame}[plain]
+  \centering
+  {\Huge \bfseries Thank You!}\\[1cm]
+  {\large Joe J Collins} \\[0.5cm]
+  \includegraphics[height=1.5cm]{images/zengenti.png}
+  \note{Thank you for listening.\\
+    I'm Big Joe from Zengenti.\\
+    If you thought this was interesting,\\
+    and would like to work with us,\\
+    please get in touch.\\
+    If you have other ideas how to work with sucky code,\\
+    I'm all ears.\\
+    Or if you have an idea how to manage the process,\\
+    Let's talk.\\
+  }
+\end{frame}
+
+\end{document}
