@@ -3,11 +3,18 @@
     "language": "en",
     "words": [
         "abcdefghijklmnopqrstuvwxyz",
+        "admiral_frendor",
         "debugpy",
         "dotenv",
-        "admiral_frendor",
+        "fendor",
+        "frendor",
+        "isfile",
+        "mkdocs",
         "mypy",
         "pycache",
-        "pyright"
+        "pyproject",
+        "pyright",
+        "pytest",
+        "venv"
     ]
 }

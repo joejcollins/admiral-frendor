@@ -1,0 +1,138 @@
+{
+    "Pytest Skeleton": {
+        "prefix": "python-pytest",
+        "body": [
+            "def test_environment_site_routes_put_redirect_no_exist(monkeypatch: MonkeyPatch) -> None:",
+                "    \"\"\"Test.\"\"\"",
+                "    # ARRANGE",
+                "    # ACT",
+                "    # ASSERT"
+        ],
+        "description": "Pytest test function"
+    },
+    "Ansible Module Skeleton": {
+        "prefix": "ansible-module",
+        "isFileTemplate": true,
+        "body": [
+            "#!/usr/bin/python",
+            "import yaml",
+            "from ansible.module_utils.basic import AnsibleModule",
+            "",
+            "def main():",
+            "    # Define options accepted by the module.",
+            "    module_args = dict(",
+            "        user=dict(type='str', required=True),",
+            "        password=dict(type='str', required=True, no_log=True),",
+            "        data=dict(type='str', required=True),",
+            "    )",
+            "",
+            "    module = AnsibleModule(",
+            "        argument_spec=module_args,",
+            "        supports_check_mode=True",
+            "    )",
+            "",
+            "    result = dict(",
+            "        changed=False",
+            "    )",
+            "",
+            "    got = {}",
+            "    wanted = {}",
+            "",
+            "    # Populate both `got` and `wanted`.",
+            "    if got != wanted:",
+            "        result['changed'] = True",
+            "        result['diff'] = dict(",
+            "            before=yaml.safe_dump(got),",
+            "            after=yaml.safe_dump(wanted)",
+            "        )",
+            "",
+            "    if module.check_mode or not result['changed']:",
+            "        module.exit_json(**result)",
+            "",
+            "    # Apply changes.",
+            "    module.exit_json(**result)",
+            "",
+            "if __name__ == '__main__':",
+            "    main()",
+        ],
+        "description": "Ansible module skeleton"
+    },
+    "Ansible Template" :{
+        "prefix": "ansible-template",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.template:",
+            "        src: ${2:src}",
+            "        dest: ${3:dest}",
+            "        owner: ${4|root,headhoncho|}",
+            "        group: ${5|root,wheel|}",
+            "        mode: '${6|0600,0640,0644,0700,0755,0777|}'"
+        ],
+        "description": "Ansible template"
+    },
+    "Ansible Systemd" :{
+        "prefix": "ansible-systemd",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.systemd:",
+            "        name: ${2:service name}",
+            "        state: ${3|reloaded,restarted,started,stopped|}",
+            "        daemon_reload: ${4|true,false|}",
+            "        enabled: ${5|true,false|}",
+            "        force: ${6|true,false|}",
+            "        masked: ${7|true,false|}",
+        ],
+        "description": "Ansible systemd"
+    },
+    "Ansible Set Fact" :{
+        "prefix": "ansible-set-fact",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.set_fact:",
+            "        ${2:key}: ${3:value}"
+        ],
+        "description": "Ansible set fact"
+    },
+    "Ansible Include Role" :{
+        "prefix": "ansible-include-role",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.include_role:",
+            "        name: ${2:role name}",
+            "        tasks_from: ${3:tasks}",
+            "        defaults_from: ${4:defaults}",
+            "        handlers_from: ${5:handlers}"
+        ],
+        "description": "Ansible include role"
+    },
+    "Ansible File" :{
+        "prefix": "ansible-file",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.file:",
+            "        src: ${2:src}",
+            "        dest: ${3:dest}",
+            "        owner: ${4|root,headhoncho|}",
+            "        group: ${5|root,wheel|}",
+            "        mode: '${6|0600,0640,0644,0700,0755,0777|}'",
+            "        state: ${7|absent,directory,file,hard,link,touch|}"
+        ],
+        "description": "Ansible file"
+    },
+    "Ansible Apt" :{
+        "prefix": "ansible-apt",
+        "body":[
+            "    - name: ${1:Name}",
+            "      ansible.builtin.apt:",
+            "        name: ${2:service name}",
+            "        state: ${3|present,---,absent,build-dep,latest,fixed|}",
+            "        autoclean: ${4|false,---,true|}",
+            "        autoremove: ${5|false,---,true|}",
+            "        clear: ${6|false,---,true|}",
+            "        force: ${7|false,---,true|}",
+            "        update_cache: ${8|true,false|}",
+            "        updgrade: ${9|no,---,dist,full,safe,yes|}"
+        ],
+        "description": "Ansible apt"
+    }
+}
