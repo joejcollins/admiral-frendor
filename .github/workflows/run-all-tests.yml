@@ -13,7 +13,7 @@ jobs:
   run_python_tests:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/earthroverprogram/asgard:latest
+      image: ghcr.io/joejcollins/admiral-frendor:latest
 
     steps:
       - name: Checkout the repo.
