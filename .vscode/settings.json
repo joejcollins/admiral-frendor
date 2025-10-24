@@ -1,4 +1,7 @@
 {
+    "editor.rulers": [
+        80
+    ],
     "files.exclude": {
         "**/__pycache__": true,
         "**/*.aux": true,
@@ -6,12 +9,29 @@
         "**/.pytest_cache": true,
         "**/.ruff_cache": true,
         "**/*.egg-info": true,
+        "**/*.pyc": true
+    },
+    "files.watcherExclude": {
+        "**/__pycache__": true,
+        "**/*.aux": true,
+        "**/*.nav": true,
+        "**/.ansible": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/*.egg-info": true,
         "**/*.pyc": true,
-        "**/*.out": true,
-        "**/*.synctex.gz": true,
-        "**/*.snm": true,
-        "**/*.fls": true,
-        "**/*.fdb_latexmk": true,
+        "**/.venv/**": true
+    },
+    "search.exclude": {
+        "**/__pycache__": true,
+        "**/*.aux": true,
+        "**/*.nav": true,
+        "**/.ansible": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/*.egg-info": true,
+        "**/*.pyc": true,
+        "**/.venv/**": true
     },
     "python.languageServer": "Pylance",
     "python.defaultInterpreterPath": ".venv/bin/python",
@@ -21,6 +41,6 @@
     "python.terminal.activateEnvironment": true,
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnSave": true,
-    },
+        "editor.formatOnSave": true
+    }
 }

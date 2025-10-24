@@ -1,0 +1,25 @@
+---
+- name: Gather and display facts about localhost
+  hosts: localhost
+  gather_facts: true
+
+  vars:
+    # Use the lookup plugin to create a random string
+    random_password: >-
+      {{ lookup('community.general.random_words', 3,
+                 delimiter='-', min_length=4, max_length=8) }}
+    random_single_word: "{{ lookup('community.general.random_words') }}"
+
+
+  tasks:
+    - name: Show all facts
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Show a random single word
+      ansible.builtin.debug:
+        msg: "Random word: {{ random_single_word }}"
+
+    - name: Show a random 3-word phrase (like 'happy-green-lion')
+      ansible.builtin.debug:
+        msg: "Random phrase: {{ random_password }}"

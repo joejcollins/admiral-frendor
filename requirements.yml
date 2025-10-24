@@ -1,0 +1,9 @@
+---
+collections:
+  - name: ebdruplab.semaphoreui
+    type: galaxy
+
+roles:
+  - name: ansible-sftpgo
+    src: https://github.com/johanmeiring/ansible-sftp.git
+    version: main

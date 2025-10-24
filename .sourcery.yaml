@@ -1,19 +1,23 @@
 ---
+version: "1"
+
 ignore:
   - .env
+  - .git
   - .venv
   - .vscode
+
 rule_settings:
   enable:
     - default
     - gpsg
-  disable:
-    - dont-import-test-modules
+  disable: []  # A list of rule IDs Sourcery will never suggest.
   rule_types:
     - refactoring
     - suggestion
     - comment
-  python_version: "3.12"
+  python_version: "3.14"  # A string specifying the lowest Python version your project supports.
+
 clone_detection:
   min_lines: 3
   min_duplicates: 2
