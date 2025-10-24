@@ -16,7 +16,7 @@ jobs:
   publish-pages:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/earthroverprogram/asgard:latest
+      image: ghcr.io/joejcollins/admiral-frendor:latest
 
     steps:
       - uses: actions/checkout@v5
