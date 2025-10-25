@@ -20,8 +20,8 @@ options:
 
 EXAMPLES = r"""
 - name: Get a fixed feature flag status using the action plugin
-  mycollection.dummy_api_call:
-    parameter: "experimental_feature_toggle"
+  admiral_frendor.dummy.dummy_api_call:
+    parameter: "test parameter"
   register: api_result
 """
 
@@ -35,8 +35,8 @@ fixed_result:
             description: Always 'success' for this demo.
             type: str
             sample: success
-        is_enabled:
-            description: The fixed feature flag status.
-            type: bool
-            sample: True
+        input_parameter:
+            description: The parameter value passed to the module.
+            type: str
+            sample: "test parameter"
 """
