@@ -23,3 +23,12 @@
     - name: Show a random 3-word phrase (like 'happy-green-lion')
       ansible.builtin.debug:
         msg: "Random phrase: {{ random_password }}"
+
+    - name: Dummy module test
+      admiral_frendor.dummy.dummy_api_call:
+        parameter: "Test Name"
+      register: dummy_result
+
+    - name: Show the dummy api call result
+      ansible.builtin.debug:
+        msg: "Dummy Result: {{ dummy_result }}"

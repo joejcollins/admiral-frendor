@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+namespace: admiral_frendor
+name: dummy
+version: 0.0.1
+readme: README.md
+authors:
+- Joe J Collins <joejcollins@gmail.com>
+description: Dummy documentation collection
+license:
+- GPL-2.0-or-later
+tags: [demo]
+dependencies: {}
+repository: https://github.com/joejcollins/admiral-frendor
+documentation: https://joejcollins.github.io/admiral-frendor/
+homepage: https://joejcollins.github.io/admiral-frendor/
+build_ignore: []

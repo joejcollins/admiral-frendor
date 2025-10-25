@@ -1,0 +1,1 @@
+"""Admiral Frendor Collection."""
