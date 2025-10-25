@@ -43,5 +43,6 @@
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true
-    }
+    },
+    "ansible.python.interpreterPath": "/Users/joe/Documents/Projects/joe/admiral-frendor/.venv/bin/python"
 }

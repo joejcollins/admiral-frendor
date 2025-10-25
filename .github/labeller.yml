@@ -1,0 +1,32 @@
+---
+🛠️source:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/**
+
+🏭ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+          - .devcontainer/**
+          - .vscode/**
+
+📝documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/**
+
+🧪tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - tests/**
+
+💿data:
+  - changed-files:
+      - any-glob-to-any-file:
+          - data/**
+
+📚notebooks:
+  - changed-files:
+      - any-glob-to-any-file:
+          - notebooks/**
