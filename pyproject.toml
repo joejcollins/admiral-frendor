@@ -1,7 +1,7 @@
 [project]
 name = "admiral_frendor"
 version = "0.0.1"
-description = "Dedicated the Arago Rock Lighthouse in episode 16 (The Lighthouse Dwellers)."
+description = "Dedicated to the Arago Rock Lighthouse in episode 16 (The Lighthouse Dwellers)."
 authors = [{ name = "Joe Collins", email = "joejcollins@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13"

@@ -4,18 +4,25 @@
     "words": [
         "abcdefghijklmnopqrstuvwxyz",
         "admiral_frendor",
+        "Arago",
         "debugpy",
         "dotenv",
         "fendor",
         "frendor",
+        "ipykernel",
         "isfile",
         "joejcollins",
+        "loguru",
         "mkdocs",
+        "mkdocstrings",
         "mypy",
         "pycache",
+        "pydantic",
         "pyproject",
         "pyright",
         "pytest",
-        "venv"
+        "typer",
+        "venv",
+        "xkcdpass"
     ]
 }
